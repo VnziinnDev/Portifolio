@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vinícius Caleffi | Técnico em Informática para Internet</title>
+<meta name="description" content="Portfólio de Vinícius Caleffi, técnico em Informática para Internet de São Bernardo do Campo - SP. Desenvolvimento web, C#, Python, SQL e PHP.">
+<meta name="theme-color" content="#0d1117">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d1117'/><text x='50' y='68' font-size='56' text-anchor='middle' fill='%23a5b4fc' font-family='Arial' font-weight='700'>V</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #262d37;
+    --text: #e6edf3;
+    --muted: #9aa5b1;
+    --accent: #a5b4fc;
+    --accent-strong: #818cf8;
+    --on-accent: #0d1117;
+    --radius: 12px;
+    --max: 1080px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  .wrap { width: min(100% - 2.5rem, var(--max)); margin-inline: auto; }
+  section { padding: 5rem 0; }
+  h1, h2, h3, p { margin: 0; }
+  h2 { font-size: clamp(1.5rem, 3vw, 1.9rem); font-weight: 650; letter-spacing: -0.01em; margin-bottom: 2rem; }
+  h3 { font-size: 1.05rem; font-weight: 600; }
+  .muted { color: var(--muted); }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(13, 17, 23, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 650; letter-spacing: -0.01em; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { color: var(--muted); font-size: 0.95rem; transition: color .15s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.btn-primary { color: var(--on-accent); font-weight: 600; }
+  .nav-links a.btn-primary:hover { color: var(--on-accent); }
+  .menu-btn {
+    display: none; background: none; border: 1px solid var(--border);
+    color: var(--text); border-radius: 8px; padding: .4rem .7rem; font: inherit; cursor: pointer;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: .7rem 1.25rem; border-radius: 10px; font-weight: 550; font-size: .95rem;
+    border: 1px solid var(--border); transition: background .15s, border-color .15s;
+  }
+  .btn:hover { border-color: var(--muted); }
+  .btn-primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .btn-primary:hover { background: #c7d2fe; border-color: #c7d2fe; }
+  .btn-sm { padding: .45rem .95rem; font-size: .88rem; }
+
+  /* Hero */
+  .hero { padding: 6rem 0 5rem; }
+  .hero h1 {
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    line-height: 1.1; letter-spacing: -0.03em; font-weight: 700;
+    max-width: 16ch;
+  }
+  .hero .role { color: var(--accent); font-size: clamp(1.05rem, 2.4vw, 1.3rem); font-weight: 500; margin-top: 1rem; }
+  .hero p.lead { max-width: 62ch; color: var(--muted); margin-top: 1.5rem; font-size: 1.05rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.25rem; }
+  .loc { margin-top: 2rem; color: var(--muted); font-size: .92rem; }
+
+  /* About */
+  .about { display: grid; gap: 1.25rem; max-width: 68ch; color: var(--muted); font-size: 1.02rem; }
+  .about strong { color: var(--text); font-weight: 550; }
+
+  /* Skills */
+  .grid { display: grid; gap: 1.25rem; }
+  .skills { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem;
+  }
+  .card h3 { margin-bottom: 1rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
+  .tags li {
+    font-size: .85rem; padding: .25rem .7rem; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--bg); color: var(--text);
+  }
+
+  /* Projects */
+  .projects { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .project { display: flex; flex-direction: column; gap: 1rem; }
+  .project .status { font-size: .85rem; color: var(--accent); }
+  .project ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+  .project li + li { margin-top: .4rem; }
+  .project .links { display: flex; gap: .6rem; margin-top: auto; padding-top: .5rem; }
+
+  /* Education */
+  .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; max-width: 760px; }
+  .timeline li {
+    border-left: 2px solid var(--border); padding: .1rem 0 .1rem 1.25rem; position: relative;
+  }
+  .timeline li::before {
+    content: ""; position: absolute; left: -6px; top: .55rem;
+    width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
+  }
+  .timeline .when { color: var(--muted); font-size: .9rem; }
+  .timeline .where { color: var(--muted); }
+
+  /* Contact */
+  .contact-box { text-align: center; padding: 3rem 1.5rem; }
+  .contact-box h2 { margin-bottom: .75rem; }
+  .contact-box p { color: var(--muted); max-width: 52ch; margin: 0 auto 1.75rem; }
+  .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
+
+  footer { border-top: 1px solid var(--border); padding: 1.75rem 0; color: var(--muted); font-size: .88rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; }
+
+  /* Mobile */
+  @media (max-width: 720px) {
+    section { padding: 3.5rem 0; }
+    .hero { padding: 4rem 0 3rem; }
+    .menu-btn { display: inline-block; }
+    .nav-links {
+      display: none; position: absolute; top: 64px; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--bg); border-bottom: 1px solid var(--border); padding: .5rem 1.25rem 1rem;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li a { display: block; padding: .75rem 0; }
+    .nav-links .btn { margin-top: .5rem; }
+    .actions .btn { flex: 1 1 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#inicio" class="logo">Vinícius<span>.</span>dev</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#formacao">Formação</a></li>
+      <li><a href="#contato" class="btn btn-primary btn-sm">Contato</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <h1>Vinícius Augusto Caleffi Lima dos Santos</h1>
+      <p class="role">Técnico em Informática para Internet</p>
+      <p class="lead">
+        Formado pelo Senac, com base em desenvolvimento web e programação e experiência prática em
+        almoxarifado e logística. Organizado, proativo e sempre aprendendo, busco contribuir em
+        Tecnologia da Informação e em áreas administrativas e operacionais.
+      </p>
+      <div class="actions">
+        <a href="#projetos" class="btn btn-primary">Ver projetos</a>
+        <a href="#contato" class="btn">Entre em contato</a>
+      </div>
+      <p class="loc">São Bernardo do Campo, SP</p>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="wrap">
+      <h2>Sobre mim</h2>
+      <div class="about">
+        <p>
+          Sou <strong>técnico em Informática para Internet</strong> pelo Senac São Bernardo do Campo
+          e estudo programação em várias frentes: front-end, back-end e mobile, com HTML, CSS,
+          Python, C#, SQL e PHP.
+        </p>
+        <p>
+          Atualmente atuo como <strong>Jovem Aprendiz no almoxarifado da Linhas Setta</strong>.
+          No dia a dia atendo setores diferentes, acompanho requisições de compra e mantenho o
+          estoque organizado, o que me dá disciplina e atenção a processos.
+        </p>
+        <p>
+          Hoje estou no Bootcamp Itaú de Java e IA e desenvolvo o Nova Optimizer, um aplicativo
+          desktop para Windows. Meu objetivo é crescer em uma equipe de tecnologia, unindo
+          código e organização.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="habilidades">
+    <div class="wrap">
+      <h2>Habilidades</h2>
+      <div class="grid skills">
+        <div class="card">
+          <h3>Linguagens</h3>
+          <ul class="tags">
+            <li>HTML</li><li>CSS</li><li>Python</li><li>C#</li><li>SQL</li><li>PHP</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Áreas de desenvolvimento</h3>
+          <ul class="tags">
+            <li>Front-End</li><li>Back-End</li><li>Mobile</li><li>Desktop (WPF)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Em andamento</h3>
+          <ul class="tags">
+            <li>Java</li><li>Inteligência artificial</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Outros conhecimentos</h3>
+          <ul class="tags">
+            <li>Inglês técnico</li><li>Organização de materiais</li><li>Distribuição interna</li><li>Apoio a inventários</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="wrap">
+      <h2>Projetos e experiência</h2>
+      <div class="grid projects">
+
+        <article class="card project">
+          <div>
+            <h3>Nova Optimizer</h3>
+            <p class="status">Em desenvolvimento</p>
+          </div>
+          <p class="muted">
+            Aplicativo desktop para Windows voltado a ajustes e diagnóstico de desempenho do sistema.
+          </p>
+          <ul class="tags"><li>C#</li><li>WPF</li><li>Windows</li></ul>
+          <div class="links">
+            <!-- Troque "#" pelos links reais do seu repositório e demo -->
+            <a href="#" class="btn btn-sm">Repositório</a>
+            <a href="#" class="btn btn-sm">Demo</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div>
+            <h3>Jovem Aprendiz no almoxarifado</h3>
+            <p class="status">Linhas Setta Ltda. (atual)</p>
+          </div>
+          <ul>
+            <li>Encaminho e acompanho requisições de suprimentos junto ao setor de Compras.</li>
+            <li>Reponho e distribuo materiais para Tinturaria, Administrativo, Financeiro e áreas operacionais.</li>
+            <li>Organizo o almoxarifado e apoio a conferência periódica de entrada e saída de mercadorias.</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="formacao">
+    <div class="wrap">
+      <h2>Formação e qualificações</h2>
+      <ul class="timeline">
+        <li>
+          <h3>Bootcamp Itaú: Java e IA</h3>
+          <p class="when">Em andamento</p>
+          <p class="where">Formação complementar</p>
+        </li>
+        <li>
+          <h3>Técnico em Informática para Internet</h3>
+          <p class="when">Abr/2024 a jul/2025</p>
+          <p class="where">Senac São Bernardo do Campo</p>
+        </li>
+        <li>
+          <h3>Ensino Médio completo</h3>
+          <p class="where">E.E. Prof. João Batista Bernardes</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="wrap">
+      <div class="card contact-box">
+        <h2>Vamos conversar</h2>
+        <p>Estou aberto a vagas e oportunidades em tecnologia, administrativo e operações. Me chame por um dos canais abaixo.</p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="mailto:vinicaleffi16@gmail.com">E-mail</a>
+          <a class="btn" href="https://wa.me/5511978439048" target="_blank" rel="noopener">WhatsApp</a>
+          <!-- Troque pelos seus perfis reais -->
+          <a class="btn" href="https://github.com/VnziinnDev" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/vinicius-augusto-caleffi-lima-dos-santos-79a061226/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Vinícius Augusto Caleffi Lima dos Santos</span>
+    <span>São Bernardo do Campo, SP</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var btn = document.getElementById('menuBtn');
+  var links = document.getElementById('navLinks');
+  btn.addEventListener('click', function () {
+    var open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  links.addEventListener('click', function (e) {
+    if (e.target.closest('a')) {
+      links.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
+</body>
+</html>
